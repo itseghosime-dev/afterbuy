@@ -10,14 +10,42 @@
   --app-primary-hover: #0d655e;
 }
 
+:root[data-theme="dark"] {
+  --app-canvas: #131c24;
+  --app-surface: #1d2a34;
+  --app-foreground: #edf4f5;
+  --app-text-muted: #afc0c5;
+  --app-border-subtle: #3a4b56;
+  --app-primary: #0f766e;
+  --app-primary-hover: #0d655e;
+
+  color-scheme: dark;
+}
+
 @media (prefers-color-scheme: dark) {
-  :root {
-    --app-canvas: #020617;
-    --app-surface: #0f172a;
-    --app-foreground: #f8fafc;
-    --app-text-muted: #94a3b8;
-    --app-border-subtle: #1e293b;
+  :root:not([data-theme="light"]) {
+    --app-canvas: #131c24;
+    --app-surface: #1d2a34;
+    --app-foreground: #edf4f5;
+    --app-text-muted: #afc0c5;
+    --app-border-subtle: #3a4b56;
+    --app-primary: #0f766e;
+    --app-primary-hover: #0d655e;
+
+    color-scheme: dark;
   }
+}
+
+:root[data-theme="dark"] {
+  --app-canvas: #0b1520;
+  --app-surface: #172734;
+  --app-foreground: #f0f5f7;
+  --app-text-muted: #a8bac5;
+  --app-border-subtle: #344b59;
+  --app-primary: #0f766e;
+  --app-primary-hover: #0d655e;
+
+  color-scheme: dark;
 }
 
 @theme inline {
@@ -34,11 +62,25 @@
 }
 
 @layer base {
+  html.theme-revealing,
+  html.theme-revealing * {
+    transition: none !important;
+  }
+
   body {
     background-color: var(--color-canvas);
     color: var(--color-foreground);
     font-family: var(--font-sans);
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+    transition:
+      background-color 200ms ease,
+      color 200ms ease;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    body {
+      transition: none;
+    }
   }
 }

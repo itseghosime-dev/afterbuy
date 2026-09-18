@@ -1,3 +1,9 @@
+"use client";
+
+import { ThemeToggler } from "@/components/ui-shared/themeToggler";
+
+ 
+
 export default function Home() {
   return (
     <main className="flex min-h-screen items-center justify-center p-6">
@@ -6,11 +12,10 @@ export default function Home() {
           Design Tokens Active
         </h1>
         <p className="mt-2 text-sm text-text-muted">
-          The Minimal Fintech architecture is wired via Tailwind v4 CSS variables. Try toggling your system dark mode!
+          The Minimal Fintech architecture is wired via Tailwind v4 CSS
+          variables. Try toggling your system dark mode!
         </p>
-        <button className="mt-6 flex min-h-[44px] w-full items-center justify-center rounded-lg bg-primary font-medium text-white transition-colors hover:bg-primary-hover">
-          Confirm & Commit
-        </button>
+        <ThemeToggler />
       </div>
     </main>
   );
