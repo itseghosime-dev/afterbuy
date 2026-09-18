@@ -1,26 +1,44 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --app-canvas: #f8fafc;
+  --app-surface: #ffffff;
+  --app-foreground: #0f172a;
+  --app-text-muted: #475569;
+  --app-border-subtle: #e2e8f0;
+  --app-primary: #0f766e;
+  --app-primary-hover: #0d655e;
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+    --app-canvas: #020617;
+    --app-surface: #0f172a;
+    --app-foreground: #f8fafc;
+    --app-text-muted: #94a3b8;
+    --app-border-subtle: #1e293b;
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+@theme inline {
+  --color-canvas: var(--app-canvas);
+  --color-surface: var(--app-surface);
+  --color-foreground: var(--app-foreground);
+  --color-text-muted: var(--app-text-muted);
+  --color-border-subtle: var(--app-border-subtle);
+  --color-primary: var(--app-primary);
+  --color-primary-hover: var(--app-primary-hover);
+
+  --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+  --font-heading: var(--font-jakarta), ui-sans-serif, system-ui, sans-serif;
+}
+
+@layer base {
+  body {
+    background-color: var(--color-canvas);
+    color: var(--color-foreground);
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
 }
