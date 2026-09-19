@@ -141,3 +141,17 @@
     }
   }
 }
+
+.password-strength-fill {
+  transform-origin: left;
+  transition:
+    transform 400ms linear,
+    background-color 200ms linear;
+  will-change: transform;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .password-strength-fill {
+    transition: none;
+  }
+}

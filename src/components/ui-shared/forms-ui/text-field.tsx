@@ -15,12 +15,7 @@ export interface TextFieldProps extends Omit<
   inputClassName?: string;
   iconClassName?: string;
 }
-
-const variantClasses = {
-  default: "rounded-lg",
-  soft: "rounded-md",
-} as const;
-
+ 
 export default function TextField(props: TextFieldProps) {
   const generatedId = useId();
 
@@ -67,8 +62,7 @@ export default function TextField(props: TextFieldProps) {
     .join(" ");
 
   const controlClasses = [
-    "group flex min-h-12 items-center gap-2 px-4",
-    variantClasses[variant],
+    "group flex min-h-12 items-center gap-2 px-4 rounded-lg",
     backgroundClass,
     "transition-shadow duration-200 ease-out",
     isInvalid
