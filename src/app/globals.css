@@ -8,6 +8,8 @@
   --app-border-subtle: #e2e8f0;
   --app-primary: #0f766e;
   --app-primary-hover: #0d655e;
+  --app-destructive: #dc2626;
+  --app-destructive-hover: #c51111;
 }
 
 :root[data-theme="dark"] {
@@ -18,6 +20,8 @@
   --app-border-subtle: #3a4b56;
   --app-primary: #0f766e;
   --app-primary-hover: #0d655e;
+  --app-destructive: #dc2626;
+  --app-destructive-hover: #c51111;
 
   color-scheme: dark;
 }
@@ -31,6 +35,8 @@
     --app-border-subtle: #3a4b56;
     --app-primary: #0f766e;
     --app-primary-hover: #0d655e;
+    --app-destructive: #dc2626;
+    --app-destructive-hover: #c51111;
 
     color-scheme: dark;
   }

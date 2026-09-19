@@ -1,6 +1,6 @@
 "use client";
 
-import { ThemeToggler } from "@/components/ui-shared/themeToggler";
+import { ThemeToggler } from "@/components/ui-shared/buttons/themeToggler";
 
  
 
