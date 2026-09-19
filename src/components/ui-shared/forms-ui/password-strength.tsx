@@ -24,30 +24,21 @@ const strengthColourClasses: Record<PasswordStrengthLevel, string> = {
 export default function PasswordStrength({ password }: PasswordStrengthProps) {
   const strength = evaluatePasswordStrength(password);
 
-  // The number of sections that have visually completed.
   const [displayedLevel, setDisplayedLevel] =
     useState<PasswordStrengthLevel>(0);
 
-  // Refs give the timer access to the latest values without
-  // recreating the timer function after every render.
   const displayedLevelRef = useRef<PasswordStrengthLevel>(0);
 
   const targetLevelRef = useRef<PasswordStrengthLevel>(strength.level);
 
   const timerRef = useRef<number | null>(null);
 
-  /**
-   * Moves the visual meter by exactly one section.
-   * It waits for that section to finish before moving again.
-   */
   const moveOneSection = useCallback(function moveOneSection() {
-    // The timer that called this function has now completed.
     timerRef.current = null;
 
     const currentLevel = displayedLevelRef.current;
     const targetLevel = targetLevelRef.current;
 
-    // The visual meter has reached the real password strength.
     if (currentLevel === targetLevel) {
       return;
     }
@@ -59,15 +50,9 @@ export default function PasswordStrength({ password }: PasswordStrengthProps) {
     displayedLevelRef.current = nextLevel;
     setDisplayedLevel(nextLevel);
 
-    // Wait for this section's animation to finish before
-    // allowing the following section to start.
     timerRef.current = window.setTimeout(moveOneSection, SEGMENT_DURATION);
   }, []);
 
-  /**
-   * Update the destination whenever the real password
-   * strength changes.
-   */
   useEffect(() => {
     targetLevelRef.current = strength.level;
 
@@ -87,18 +72,11 @@ export default function PasswordStrength({ password }: PasswordStrengthProps) {
       return;
     }
 
-    // Start the queue only when another section isn't
-    // currently being animated.
     if (timerRef.current === null) {
-      // Starting through a timer prevents React Strict Mode
-      // from accidentally running the first step twice.
       timerRef.current = window.setTimeout(moveOneSection, 0);
     }
   }, [strength.level, moveOneSection]);
 
-  /**
-   * Remove any active timer when the component unmounts.
-   */
   useEffect(() => {
     return () => {
       if (timerRef.current !== null) {
