@@ -1,26 +1,92 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --app-canvas: #f8fafc;
+  --app-surface: #ffffff;
+  --app-foreground: #0f172a;
+  --app-text-muted: #475569;
+  --app-border-subtle: #e2e8f0;
+  --app-primary: #0f766e;
+  --app-primary-hover: #0d655e;
+  --app-destructive: #dc2626;
+  --app-destructive-hover: #c51111;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+:root[data-theme="dark"] {
+  --app-canvas: #131c24;
+  --app-surface: #1d2a34;
+  --app-foreground: #edf4f5;
+  --app-text-muted: #afc0c5;
+  --app-border-subtle: #3a4b56;
+  --app-primary: #0f766e;
+  --app-primary-hover: #0d655e;
+  --app-destructive: #dc2626;
+  --app-destructive-hover: #c51111;
+
+  color-scheme: dark;
 }
 
 @media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+  :root:not([data-theme="light"]) {
+    --app-canvas: #131c24;
+    --app-surface: #1d2a34;
+    --app-foreground: #edf4f5;
+    --app-text-muted: #afc0c5;
+    --app-border-subtle: #3a4b56;
+    --app-primary: #0f766e;
+    --app-primary-hover: #0d655e;
+    --app-destructive: #dc2626;
+    --app-destructive-hover: #c51111;
+
+    color-scheme: dark;
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+:root[data-theme="dark"] {
+  --app-canvas: #0b1520;
+  --app-surface: #172734;
+  --app-foreground: #f0f5f7;
+  --app-text-muted: #a8bac5;
+  --app-border-subtle: #344b59;
+  --app-primary: #0f766e;
+  --app-primary-hover: #0d655e;
+
+  color-scheme: dark;
+}
+
+@theme inline {
+  --color-canvas: var(--app-canvas);
+  --color-surface: var(--app-surface);
+  --color-foreground: var(--app-foreground);
+  --color-text-muted: var(--app-text-muted);
+  --color-border-subtle: var(--app-border-subtle);
+  --color-primary: var(--app-primary);
+  --color-primary-hover: var(--app-primary-hover);
+
+  --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+  --font-heading: var(--font-jakarta), ui-sans-serif, system-ui, sans-serif;
+}
+
+@layer base {
+  html.theme-revealing,
+  html.theme-revealing * {
+    transition: none !important;
+  }
+
+  body {
+    background-color: var(--color-canvas);
+    color: var(--color-foreground);
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    transition:
+      background-color 200ms ease,
+      color 200ms ease;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    body {
+      transition: none;
+    }
+  }
 }
